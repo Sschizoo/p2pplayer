@@ -12,9 +12,9 @@ function App() {
   const [myId, setMyId] = useState<string>('');
   const [remoteId, setRemoteId] = useState<string>('');
   const [status, setStatus] = useState<string>('Initializing...');
-  const [isHost, setIsHost] = useState<boolean>(false);
-  const isHostRef = useRef<boolean>(false); // Ref to access current state in closures
-  const [logs, setLogs] = useState<string[]>([]);
+  const [__, setIsHost] = useState<boolean>(false); // Keeping setter for potential use, but prefixing unused
+  const isHostRef = useRef<boolean>(false);
+  // removed logs state to prevent build failure
 
   const videoRef = useRef<HTMLVideoElement>(null);
   const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -24,7 +24,7 @@ function App() {
   const heartbeatInterval = useRef<number | null>(null); // For Host to send heatbeats
 
   const addLog = (msg: string) => {
-    setLogs(prev => [msg, ...prev].slice(0, 10));
+    // Keeping console.log for debugging, removed setLogs
     console.log(msg);
   };
 
